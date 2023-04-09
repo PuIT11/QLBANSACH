@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<table align="center" class="register"> 
+    <h2>ĐĂNG KÝ THÀNH VIÊN</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+            <tr>
+                <td>Họ tên khách hàng:</td>
+                <td>
+                    @Html.TextBox("HoTenKH")
+                    @ViewData["Loi1"]
+                </td>
+            </tr>
+            <tr>
+                <td>Tên đăng nhập</td>
+                <td>
+                    @Html.TextBox("TenDN")
+                    @ViewData["Loi2"]
+                </td>
+            </tr>
+            <tr>
+                <td>Mật khẩu:</td>
+                <td>
+                    @Html.Password("MatKhau")
+                    @ViewData["Loi3"]
+                </td>
+            </tr>
+            <tr>
+                <td>Mật khẩu nhập lại:</td>
+                <td>
+                    @Html.Password("MatKhauNhapLai")
+                    @ViewData["Loi4"]
+                </td>
+            </tr>
+            <tr>
+                <td>Địa chỉ:</td>
+                <td>
+                    @Html.TextBox("DiaChi")
+                    @ViewData["Loi5"]
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    @Html.TextBox("Email")
+                    @ViewData["Loi7"]
+                </td>
+            </tr>
+            <tr>
+                <td>Điện thoại:</td>
+                <td>
+                    @Html.TextBox("DienThoai")
+                    @ViewData["Loi6"]
+                </td>
+            </tr>
+            <tr>
+                <td>Ngày sinh:</td>
+                <td>
+                    <input type="date" name="Ngaysinh"
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Đăng ký" />
+                </td>
+            </tr>
+    }
+</table>

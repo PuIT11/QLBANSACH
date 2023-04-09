@@ -1,0 +1,45 @@
+﻿@using QLBANSACH.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<hr />
+<div class="text-center section">Sản phẩm theo chủ đề</div>
+<hr />
+<div class="row">
+    @foreach (var sach in Model)
+    {
+	<!-- Begin: New Book -->
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details","Bookstore",new { id = @sach.MaSach })">
+                    <img src="~/Images/hinh_san_pham/@sach.AnhBia" alt="Sách 1" width=200 />
+                </a>
+                <div>
+                    <p class="pull-right">$15</p>
+                    <a href="#">
+                        <h4>@sach.TenSach</h4>
+                    </a>
+                </div>
+                <p class="text-justify">Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document.</p>
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+	<!-- End: New Book -->
+    }
+</div>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("SPTheoNXB", new { id = ViewBag.MaNXB, page = page}))
+</div>

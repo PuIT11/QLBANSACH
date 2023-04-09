@@ -1,0 +1,39 @@
+﻿@using QLBANSACH.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<hr />
+<div class="text-center section">Chào mừng đến với Tiệm Sách của Urine</div>
+<th> @Html.ActionLink("Sắp xếp mã sách", "Index", new { sortOrder = ViewBag.MaSortParm }) </th>
+<th>/</th>
+<th>  @Html.ActionLink("Sắp xếp tên sách", "Index", new { sortOrder = ViewBag.TenSortParm }) </th>
+<hr />
+<div class="row">
+    @foreach (var sach in Model)
+    {
+        <!-- Begin: New Book -->
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details","Bookstore",new { id = @sach.MaSach })">
+                    <img src="~/Models/Images/@sach.AnhBia" alt="Sách 1" width=200 />
+                </a>
+                <div>
+
+                    <a href="#">
+                        <h4>@sach.TenSach</h4>
+                    </a>
+                </div>
+                <p class="mota"><span> Các văn bản luật do nhà nước ban hành Tên của nhà nước Nhan đề 28. Tác phấm âm nhạc có phần lời và phần nhạc Tên của người viết nhạc • Nhan đề riêng Tác giả kịch bản • Tên người viết lời 29. </span></p>
+            </div>
+        </div>
+        <!-- End: New Book -->
+    }
+</div>
+Trang @(Model.PageCount < Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("index", new { page = page }))
+</div>

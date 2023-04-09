@@ -1,0 +1,85 @@
+﻿@model QLBANSACH.Models.SACH
+
+@{
+    ViewBag.Title = "Themmoisach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THÊM MỚI SÁCH</h2>
+
+@using (Html.BeginForm("Themmoisach","Admin",FormMethod.Post,new {@enctype="multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.Label("Mã sách", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenSach)
+                @Html.ValidationMessageFor(model => model.TenSach)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Tên sách", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaBan)
+                @Html.ValidationMessageFor(model => model.GiaBan)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Giá bán", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaBan)
+                @Html.ValidationMessageFor(model => model.GiaBan)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Mô tả", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <textarea name="Mota">Mô tả thông tin sách</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Ảnh bìa", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="fileupload" />
+                @ViewBag.Thongbao
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Ngày cập nhật", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" name="Ngaycapnhat"/>
+                @Html.ValidationMessageFor(model => model.NgayCapNhat)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Số lượng tồn", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuongTon)
+                @Html.ValidationMessageFor(model => model.SoLuongTon)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Mã chủ đề", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaCD")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Mã nhà xuất bản", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaNXB")
+            </div>               
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm mới"class="btn btn-default" />
+            </div>
+        </div>
+            @Html.ActionLink("Về trang quản lý sách", "Sach")
+    </div>
+}
+

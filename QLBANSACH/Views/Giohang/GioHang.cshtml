@@ -1,0 +1,58 @@
+﻿@using QLBANSACH.Models;
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="gio_hang">
+    <h2>THÔNG TIN GIỎ HÀNG</h2>
+    <table align="center" border="1"> 
+        <tr>
+            <td>Mã sách</td>
+            <td>Tên sách</td>
+            <td>Ảnh bìa</td>
+            <td>Số lượng</td>
+            <td>Đơn giá</td>
+            <td>Thành tiền</td>
+            <td width="50px"></td>
+            <td width="50px"></td>
+            <td width="50px"></td>
+            <td width="50px"></td>
+            <td width="50px"></td>
+            <td width="50px"></td>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.iMasach</td>
+                <td>@item.sTensach</td>
+                <td><img src="~/Images/hinh_san_pham/@item.sAnhbia" /></td>
+                <td>@item.iSoluong</td>
+                <td>@String.Format("{0:0,0}",item.dDongia)</td>
+                <td>@String.Format("{0:0,0}", item.dThanhtien)</td>
+                @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @iMaSP = item.iMasach }))
+                {
+                    <td>
+                        <input class="so_luong" type="number" min="1" name="txtSoluong" value="@item.iSoluong"/>
+                    </td>
+                    <td>@string.Format("{0:0,0}", item.dDongia)</td>
+                    <td>@string.Format("{0:0,0}", item.dThanhtien)</td>
+                    <td><a href="@Url.Action("Details","BookStore", new { id = item.iMasach })">Chi tiết</a></td>
+                    <td><span class="xoa_gio_hang">@Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSp = item.iMasach })</span></td>
+                    <td><input type="submit" value="Cập nhật" /></td>
+                }
+            </tr>
+        }
+        
+        <tr class="tong_tien">
+            <td colspan="7">Số lượng sách: @ViewBag.Tongsoluong</td>
+            <td colspan="5">Tổng tiền: @String.Format("{0:0,0}",ViewBag.Tongtien) VND</td>
+        </tr>
+        <tr>
+            <td colspan="12" class="xoa_tat_ca">@Html.ActionLink("Xóa tất cả giỏ hàng", "XoaTatcaGiohang")</td>
+        </tr>
+        <tr>
+            <td colspan="12">@Html.ActionLink("Đặt hàng","Dathang","Giohang")</td>
+        </tr>
+    </table>
+</div>

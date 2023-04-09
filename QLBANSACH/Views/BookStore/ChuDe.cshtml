@@ -1,0 +1,6 @@
+﻿@model IEnumerable<QLBANSACH.Models.CHUDE>
+@foreach(var chude in Model)
+{
+    
+    <a href="@Url.Action("SPTheoChuDe", "BookStore", new { id = @chude.MaCD })" alt="" class="list-group-item">@chude.TenChuDe</a>
+}
