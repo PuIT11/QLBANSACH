@@ -30,7 +30,7 @@ namespace QLBANSACH.Controllers
 
 //=========================
 
-public ActionResult Index(int? page, String sortOrder, string searchString, double? to, double? from, string TenSach)
+        public ActionResult Index(int? page, String sortOrder, string searchString, double? to, double? from, string TenSach)
         {
 
             ViewBag.MaSortParm = String.IsNullOrEmpty(sortOrder) ? "ma_desc" : "";
